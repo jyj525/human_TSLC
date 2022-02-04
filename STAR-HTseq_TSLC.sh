@@ -34,8 +34,6 @@ STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/iPSEVT_3_
 STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/iPSEVT_4_R1.fastq $path/iPSEVT_4_R2.fastq --outFileNamePrefix $path1/iPSEVT_4
 
 ##################  Quantification with HTseq
-## The chr name should be matched with sam file format. chr1 = chr1, not this chr1 = 1.
-## gencode.vM20.chr_patch_hapl_scaff.annotation.gtf : evidence-based annotation of the mouse genome (GRCm38), version M20 (Ensembl 95)
 
 htseq-count -t exon $path1/ESC_1Aligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/ESC_1_HTseq.counts
 htseq-count -t exon $path1/ESC_2Aligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/ESC_2_HTseq.counts
