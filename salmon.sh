@@ -6,6 +6,12 @@
 # GRCh38.primary_assembly.genome.fa.gz
 # gencode.v39.annotation.gtf.gz
 
+grep "^>" <(gunzip -c GRCh38.primary_assembly.genome.fa.gz) | cut -d " " -f 1 > decoys.txt
+sed -i.bak -e 's/>//g' decoys.txt
+cat gencode.v39.transcripts.fa.gz GRCh38.primary_assembly.genome.fa.gz > gentrome.fa.gz
+$path7/salmon index -t ./gentrome.fa.gz -d ./decoys.txt -p 12 -i $path6/human_v39_salmon160_index --gencode
+
+
 ######### quant
 $path7/salmon quant -i $path6/human_v39_salmon160_index -l A --gcBias --validateMappings -1 $path/ESC_1_R1.fastq.gz -2 $path/ESC_1_R2.fastq.gz -p 8 -o $path8/ESC_1
 $path7/salmon quant -i $path6/human_v39_salmon160_index -l A --gcBias --validateMappings -1 $path/ESC_2_R1.fastq.gz -2 $path/ESC_2_R2.fastq.gz -p 8 -o $path8/ESC_2
