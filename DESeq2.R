@@ -27,8 +27,24 @@ resdata <- merge(as.data.frame(res), as.data.frame(counts(dds,normalized=TRUE)),
 names(resdata)[1]<-'gene'
 write.csv(resdata, file=paste0("TSLC","-results-with-normalized.csv"))
 
+########## PCA plot
+vsd <- vst(dds, blind=FALSE)
 
+library(ggplot2)
+p <- plotPCA(vsd, intgroup=c("condition")) + theme_classic()
+p
 
+########## Violoin plot
+library(wesanderson)
+library(ggplot2)
+
+data_EVT <- read.table(file="Violin_list_EVT_log2list.txt", header=TRUE, sep="\t")
+violin1 <- ggplot(data_EVT, aes(x=Type, y=Value, fill=Group)) + geom_violin()+ geom_boxplot(width=0.2, fill="#FFFFFF") + scale_fill_brewer(palette = "Pastel2") + theme_classic() + theme(legend.position = "none") + labs(x="Cell types", y="Log2 (Values+1)")
+violin1 + scale_x_discrete(limits=c("iPSTSLC_1","iPSTSLC_2","ESTSLC_1","ESTSLC_2","TSC_1","TSC_2","iPSEVT_1","iPSEVT_2","ESEVT_1","ESEVT_2","EVT_1","EVT_2"))
+
+data_ST <- read.table(file="Violin_list_ST_log2list.txt", header=TRUE, sep="\t")
+violin2 <- ggplot(data_EVT, aes(x=Type, y=Value, fill=Group)) + geom_violin()+ geom_boxplot(width=0.2, fill="#FFFFFF") + scale_fill_brewer(palette = "Pastel2") + theme_classic() + theme(legend.position = "none") + labs(x="Cell types", y="Log2 (Values+1)")
+violin2 + scale_x_discrete(limits=c("iPSTSLC_1","iPSTSLC_2","ESTSLC_1","ESTSLC_2","TSC_1","TSC_2","iPSST_1","iPSST_2","ESST_1","ESST_2","ST_1","ST_2"))
 
 ####### sessionInfo()
 R version 4.1.2 (2021-11-01)
