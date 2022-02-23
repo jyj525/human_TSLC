@@ -32,6 +32,14 @@ STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/iPSEVT_1_
 STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/iPSEVT_2_R1.fastq $path/iPSEVT_2_R2.fastq --outFileNamePrefix $path1/iPSEVT_2
 STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/iPSEVT_3_R1.fastq $path/iPSEVT_3_R2.fastq --outFileNamePrefix $path1/iPSEVT_3
 STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/iPSEVT_4_R1.fastq $path/iPSEVT_4_R2.fastq --outFileNamePrefix $path1/iPSEVT_4
+STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/SRR1818509_1.fastq --outFileNamePrefix $path1/hAmnion_week18_female;
+STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/SRR1818511_1.fastq --outFileNamePrefix $path1/hAmnion_week9_male;
+STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/SRR1818517_1.fastq --outFileNamePrefix $path1/hAmnion_week16_male;
+STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/SRR1818538_1.fastq --outFileNamePrefix $path1/hAmnion_week16_female;
+STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/SRR1818552_1.fastq --outFileNamePrefix $path1/hAmnion_week22_male;
+STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/SRR1818562_1.fastq --outFileNamePrefix $path1/hAmnion_week9.3_male;
+STAR --runThreadN 20 --genomeDir $path4/STAR_Human --readFilesIn $path/SRR1818590_1.fastq --outFileNamePrefix $path1/hAmnion_week22_female;
+
 
 ##################  Quantification with HTseq
 
@@ -61,3 +69,11 @@ htseq-count -t exon $path1/ESST_1Aligned.out.sam $path2/Homo_sapiens_genecode.v3
 htseq-count -t exon $path1/ESST_2Aligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/ESST_2_HTseq.counts
 htseq-count -t exon $path1/iPSST_1Aligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/iPSST_1_HTseq.counts
 htseq-count -t exon $path1/iPSST_2Aligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/iPSST_2_HTseq.counts
+htseq-count -t exon $path1/hAmnion_week9_maleAligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/hAmnion_week9_male
+htseq-count -t exon $path1/hAmnion_week9.3_maleAligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/hAmnion_week9.3_male
+htseq-count -t exon $path1/hAmnion_week16_maleAligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/hAmnion_week16_male
+htseq-count -t exon $path1/hAmnion_week16_femaleAligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/hAmnion_week16_female
+htseq-count -t exon $path1/hAmnion_week18_femaleAligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/hAmnion_week18_female
+htseq-count -t exon $path1/hAmnion_week22_maleAligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/hAmnion_week22_male
+htseq-count -t exon $path1/hAmnion_week22_femaleAligned.out.sam $path2/Homo_sapiens_genecode.v35.annotation.gtf > $path3/hAmnion_week22_female
+
